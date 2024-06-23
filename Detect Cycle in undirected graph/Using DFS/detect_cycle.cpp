@@ -10,6 +10,7 @@ bool dfs(vector<vector<int> >&adj,vector<int>&visited,int node,int parent){
                 return true;
             }
         }
+        
         else if(it!=parent){
             return true;
         }
