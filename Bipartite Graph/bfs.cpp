@@ -21,7 +21,7 @@ bool isBipartite(vector<vector<int> >&adj,int n,int m){
                 color*=-1;
                 visited[it]=color;
                 p.first=it;
-                p.second=color;
+                p.second=color; 
                 q.push(p);
             }
             else if(visited[it]==currColor){
