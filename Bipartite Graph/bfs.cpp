@@ -12,6 +12,7 @@ bool isBipartite(vector<vector<int> >&adj,int n,int m){
     q.push(p);
     visited[p.first]=p.second;
     while(!q.empty()){
+
         int node=q.front().first;
         int currColor=q.front().second;
         q.pop();
@@ -20,6 +21,7 @@ bool isBipartite(vector<vector<int> >&adj,int n,int m){
             if(visited[it]==0){
                 color*=-1;
                 visited[it]=color;
+
                 p.first=it;
                 p.second=color; 
                 q.push(p);
