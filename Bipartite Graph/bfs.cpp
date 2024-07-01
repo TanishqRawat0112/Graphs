@@ -57,7 +57,7 @@ int main(){
     if(!ans){
         cout<<"Yes, the graph is a bipartite graph."<<endl;
     }
-    else{
+    else{ 
         cout<<"No, the graph is not bipartite."<<endl;
     }
     
