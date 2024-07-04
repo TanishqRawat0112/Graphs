@@ -40,11 +40,18 @@ int main(){
         p.second=weight;
         adj[first].push_back(p);
     }
+
+    int src;
+    cout<<"Enter the source node : ";
+    cin>>src;
     stack<int>st;
     vector<int>visited(n,0);
     topo_sort(adj,st,visited,n);
 
     vector<int>dist(n,INT_MAX);
+    while(st.top()!=src){
+        st.pop();
+    }
     dist[st.top()]=0;
     while(!st.empty()){
         int node=st.top();
