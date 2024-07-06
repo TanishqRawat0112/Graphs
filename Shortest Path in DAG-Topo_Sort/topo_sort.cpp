@@ -64,6 +64,10 @@ int main(){
 
     cout<<"Minimum Distance should be : "<<endl;
     for(auto it:dist){
+        if(it==INT_MAX){
+            cout<<"INF"<<" ";
+            continue;
+        }
         cout<<it<<" ";
     }
     cout<<endl;
