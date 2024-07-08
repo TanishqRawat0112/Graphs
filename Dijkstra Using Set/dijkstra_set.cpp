@@ -18,6 +18,11 @@ vector<int>dijkstra(vector<vector<pair<int,int> > >&adj,int n,int m,int src){
         st.erase(pr);
         for(auto it:adj[node]){
             if(it.second + dist[node] < dist[it.first]){
+                if(dist[node]!=INT_MAX){
+                    p.first=dist[node];
+                    p.second=node;
+                    st.erase(p);
+                }
                 dist[it.first]=it.second + dist[node];
                 p.first=dist[it.first];
                 p.second=it.first;
