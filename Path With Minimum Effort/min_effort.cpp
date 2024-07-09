@@ -4,10 +4,9 @@
 using namespace std;
 
 int min_effort(vector<vector<int> >&heights,int n,int m){
-    int minEff=INT_MAX;
-    vector<vector<int> > visited(n,vector<int>(m,0));
+    vector<vector<int> > dist(n,vector<int>(m,INT_MAX));
     priority_queue<pair<int,pair<int,int> >, vector<pair<int,pair<int,int> > >, greater<pair<int,pair<int,int> > > >pq;
-    visited[0][0]=1;
+    dist[0][0]=0;
     pair<int,pair<int,int> >p;
     p.first=0;
     p.second.first=0;
@@ -20,16 +19,16 @@ int min_effort(vector<vector<int> >&heights,int n,int m){
         int r=pq.top().second.first;
         int c=pq.top().second.second;
         if(r==n-1 && c==m-1){
-            minEff=min(minEff,effort);
+            return effort;
         }
-        visited[r][c]=1;
         pq.pop();
         for(int i=0;i<4;i++){
             int nr=r+dirX[i];
             int nc=c+dirY[i];
-            if(nr>=0 && nr<n && nc>=0 && nc<m && visited[nr][nc]==0){
+            if(nr>=0 && nr<n && nc>=0 && nc<m && max(effort,abs(heights[nr][nc]-heights[r][c]))<dist[nr][nc]){
                 int diff=abs(heights[nr][nc]-heights[r][c]);
                 int mineff=max(effort,diff);
+                dist[nr][nc]=mineff;
                 p.first=mineff;
                 p.second.first=nr;
                 p.second.second=nc;
@@ -38,7 +37,7 @@ int min_effort(vector<vector<int> >&heights,int n,int m){
         }
 
     }
-    return minEff;
+    return -1;
 }
  
 int main(){
