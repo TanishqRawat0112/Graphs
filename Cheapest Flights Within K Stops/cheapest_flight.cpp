@@ -10,13 +10,13 @@ int cheapest_flight(vector<vector<pair<int,int> > >&flights,int n,int src,int de
     prices[src]=0;
     pair<int,pair<int,int> >p;
     p.first=0;
-    p.second.first=0;
-    p.second.second=src;
+    p.second.first=src;
+    p.second.second=prices[src];
     pq.push(p);
     while(!pq.empty()){
-        int price=pq.top().first;
-        int stops=pq.top().second.first;
-        int node=pq.top().second.second;
+        int stops=pq.top().first;
+        int node=pq.top().second.first;
+        int price=pq.top().second.second;
         if(node==dest){
             ans=min(ans,price);
         }
@@ -25,16 +25,16 @@ int cheapest_flight(vector<vector<pair<int,int> > >&flights,int n,int src,int de
             if(price + it.second < prices[it.first]){
                 if(it.first==dest){
                     prices[it.first]=price + it.second;
-                    p.first=prices[it.first];
-                    p.second.first=stops;
-                    p.second.second=it.first;
+                    p.second.second=prices[it.first];
+                    p.first=stops;
+                    p.second.first=it.first;
                     pq.push(p);
                 }
                 if(stops+1<=k){
                     prices[it.first]=price + it.second;
-                    p.first=prices[it.first];
-                    p.second.first=stops+1;
-                    p.second.second=it.first;
+                    p.second.second=prices[it.first];
+                    p.first=stops+1;
+                    p.second.first=it.first;
                     pq.push(p);
                 }
             }
