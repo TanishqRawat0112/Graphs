@@ -1,28 +1,34 @@
 #include<iostream>
 #include<vector>
-#include<set>
+#include<queue>
 using namespace std;
 
 int min_multi(vector<int>&multi,int n,int start,int end){
-    set<pair<int,int> >st;
+    queue<pair<int,int> >st;
+    vector<int>dist(100000,1e9);
+    dist[start]=0;
+    if(end==start)return 0;
     pair<int,int>p;
-    p.first=start;
-    p.second=0;
-    st.insert(p);
+    p.first=0;
+    p.second=start;
+    st.push(p);
     while(!st.empty()){
-        auto pr=*(st.begin());
-        int currNum=pr.first;
-        int steps=pr.second;
-        st.erase(pr);
+        auto pr=st.front();
+        int currNum=pr.second;
+        int steps=pr.first;
+        st.pop();
         for(auto it:multi){
             int ins=(currNum*it)%100000;
             if(ins==end){
                 return steps+1;
             }
-            if(ins < end){
-                p.first=ins;
-                p.second=steps+1;
-                st.insert(p);
+            else{
+                if(steps + 1 < dist[ins]){
+                    dist[ins]=steps+1;
+                    p.second=ins;
+                    p.first=steps+1;
+                    st.push(p);
+                }
             }
         }
     }
