@@ -5,7 +5,7 @@ using namespace std;
 
 vector<pair<int,int> >prims(vector<vector<pair<int,int> > >&adj,int n){
     vector<pair<int,int> >mst;
-    int sum=0;
+    int sum=0; 
     priority_queue<pair<int,pair<int,int> >,vector<pair<int,pair<int,int> > >,greater<pair<int,pair<int,int> > > >pq;
     vector<int>visited(n,0);
     pair<int,pair<int,int> > p;
@@ -37,7 +37,7 @@ vector<pair<int,int> >prims(vector<vector<pair<int,int> > >&adj,int n){
             int adjNode=it.first;
             int adW=it.second;
             if(visited[adjNode]==0){
-                p.first=dist+adW;
+                p.first=adW;
                 p.second.first=adjNode;
                 p.second.second=node;
                 pq.push(p);
@@ -80,7 +80,7 @@ int prims2(vector<vector<pair<int,int> > >&adj,int n){
             int adjNode=it.first;
             int adW=it.second;
             if(visited[adjNode]==0){
-                p.first=dist+adW;
+                p.first=adW;
                 p.second.first=adjNode;
                 p.second.second=node;
                 pq.push(p);
