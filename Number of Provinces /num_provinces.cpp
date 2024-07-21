@@ -58,12 +58,12 @@ int num_province(vector<vector<int> >&adj,int n,int m){
         }
     }
     int counter=0;
-    for(int i=0;i<=n;i++){
+    for(int i=1;i<=n;i++){
         if(ds.findParent(i)==i){
             counter++;
         }
     }
-    return counter-1;
+    return counter;
 }
  
 int main(){
