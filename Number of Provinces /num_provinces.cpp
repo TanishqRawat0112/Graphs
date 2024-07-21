@@ -1,6 +1,5 @@
 #include<iostream>
 #include<vector>
-#include<set>
 using namespace std;
 
 class DisjointSet{
@@ -58,11 +57,13 @@ int num_province(vector<vector<int> >&adj,int n,int m){
             }
         }
     }
-    set<int>st;
+    int counter=0;
     for(int i=0;i<=n;i++){
-        st.insert(ds.findParent(i));
+        if(ds.findParent(i)==i){
+            counter++;
+        }
     }
-    return st.size()-1;
+    return counter-1;
 }
  
 int main(){
