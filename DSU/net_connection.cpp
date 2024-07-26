@@ -40,7 +40,7 @@ class DisjointSet{
 int dsu(vector<vector<int> >edges,int n,int m){
     DisjointSet ds(n);
     for(int i=0;i<m;i++){
-        
+
     }
 }
  
@@ -48,6 +48,7 @@ int main(){
     int n;
     cout<<"Enter the number of Nodes : ";
     cin>>n;
+
 
     int m;
     cout<<"Enter the number of edges : ";
