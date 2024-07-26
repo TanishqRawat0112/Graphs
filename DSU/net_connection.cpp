@@ -37,10 +37,29 @@ class DisjointSet{
         }
 };
 
-int dsu(vector<vector<int> >edges,int n,int m){
+int dsu(vector<vector<int> >&edges,int n,int m){
     DisjointSet ds(n);
+    int extraEdges=0;
+    int usedEdges=0;
     for(int i=0;i<m;i++){
-
+        int u=edges[i][0];
+        int v=edges[i][1];
+        if(ds.findParent(u)==ds.findParent(v)){
+            extraEdges++;
+        }
+        else{
+            ds.unionBySize(u,v);
+            usedEdges++;
+        }
+    }
+    if(usedEdges + extraEdges == n-1){
+        return extraEdges;
+    }
+    else if(usedEdges + extraEdges > n-1){
+        return n-1-usedEdges;
+    }
+    else{
+        return -1;
     }
 }
  
