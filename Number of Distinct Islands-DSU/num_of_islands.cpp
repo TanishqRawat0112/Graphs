@@ -11,9 +11,7 @@ int main(){
     cout<<"Enter the number of columns in matrix : ";
     cin>>m;
 
-    vector<vector<int> >matrix()
-    
-
+    vector<vector<int> >matrix();
 
 return 0;
 }
