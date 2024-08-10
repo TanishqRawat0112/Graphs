@@ -38,8 +38,25 @@ class DisjointSet{
     }
 };
 
-int max_stones_removal(vector<pair<int,int> >&stones,int n){
+int max_stones_removal(vector<vector<int,int> >&stones,int n){
     DisjointSet ds(n);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<n;j++){
+                if(i==j)continue;
+                if(stones[i][0]==stones[j][0] || stones[i][1]==stones[j][1]){
+                    cout<<i<<" "<<j<<endl;
+                    ds.unionBySize(i,j);
+                    // break;
+                }
+            }
+        }
+        int singleparent=0;
+        for(int i=0;i<ds.parent.size();i++){
+            if(ds.parent[i]==i){
+                singleparent++;
+            }
+        }
+        return n-singleparent;
     
 }
  
@@ -48,14 +65,14 @@ int main(){
     cout<<"Enter the the number of stones present in 2-D plane : ";
     cin>>n;
 
-    vector<pair<int,int> >stones;
+    vector<vector<int,int> >stones;
     cout<<"Enter the co-ordinates of stones : "<<endl;
     for(int i=0;i<n;i++){
         int row,col;
         cin>>row>>col;
-        pair<int,int>p;
-        p.first=row;
-        p.second=col;
+        vector<int,int>p;
+        p.push_back(row);
+        p.push_back(col);
         stones.push_back(p);
     }
 
